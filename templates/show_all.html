@@ -1,0 +1,88 @@
+<!-- Display all products page -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='style.css') }}">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <title>Show All products</title>
+</head>
+
+<body>
+
+   <div class="cont">
+      
+      <div class="topnav">
+         
+         {% if user %}
+         <a href="{{ url_for('addproduct') }}">Post Your Ad</a>
+
+         <a href="{{ url_for('logout') }}">Logout</a>
+         {% else %}
+         <a href="{{ url_for('login') }}">Login</a>
+         <a href="{{ url_for('register') }}">Register</a>
+         {% endif %}
+         <div class="header">
+            <h1>Mobile Bidding Web Application</h1>
+         </div>
+      </div>
+
+
+      {%- for message in get_flashed_messages() %}
+      {{ message }}
+      {%- endfor %}
+      <h3 class="h3-TableTile">Available Products</h3>
+         <table class="table table-bordered table-dark">
+            <caption hidden> Product Details</caption> 
+            
+      <thead class="thead-dark">
+         <tr>
+            {% if user %}
+            <th id="prod_name">Edit product</th>
+            {% endif %}
+            <th id="prod_name">Product Type/Name</th>
+            <th id="prod_price">Product Price</th>
+            <th id="prod_spec">Product Details</th>
+            <th id="seller_name">Seller Name</th>
+            <th id="seller_emailID">Seller's Email ID</th>
+            <th id="seller_contactNum">Seller's Contact Number</th>
+         </tr>
+      </thead>
+
+      <tbody>
+
+         {% for products in Product %}
+         <tr>
+            {% if user and user == products.User_email %}
+            <td><a href="{{ url_for('idv_prod', product_id= products.id ) }}">Edit</a></td>
+            {% elif user == "reddymahenderreddy145@gmail.com" %}
+            <td><a href="{{ url_for('idv_prod', product_id= products.id ) }}">Edit</a></td>
+            {% elif user %}
+            <td><a href="">Unable to edit</a></td>
+            {% endif %}
+            <td id="prod_name">{{ products.Product_name}}</td>
+            <td id="prod_price">{{ products.Product_price}}</td>
+            <td id="prod_spec">{{ products.Prod_spec}}</td>
+            <td id="seller_name">{{ products.seller_name}}</td>
+            <td id="seller_emailID">{{ products.User_email }}</td>
+            <td id="seller_contactNum">{{ products.contact_num }}</td>
+         </tr>
+         {% endfor %}
+      </tbody>
+      </table>
+      <h4 style="font-size-adjust: inherit; color:white">To add your ad, please login if account already exits, or register with your email address. </h> 
+  
+   </div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+
+</body>
+
+</html>

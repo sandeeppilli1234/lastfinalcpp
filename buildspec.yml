@@ -1,0 +1,29 @@
+version: 0.2
+phases:
+  pre_build: 
+    commands:
+      - echo "Completed pre_build"
+  build:
+    commands:
+      - echo "Starting build"
+      - pip install -r requirements.txt
+      - echo "Build complete"
+  post_build:
+    commands:
+      - echo "Enteredin post-build phase"
+artifacts:
+  files:
+    - application.py
+    - buildspec.yml
+    - login.sqlite3
+    - requirements.txt
+    - templates/awsHealthOk.html
+    - templates/addproduct.html
+    - templates/error_product404.html
+    - templates/index.html
+    - templates/prod.html
+    - templates/register.html
+    - templates/show_all.html
+    - static/1.jpg
+    - static/BenutzerArt.jfif
+    - static/style.css

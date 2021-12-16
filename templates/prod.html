@@ -1,0 +1,66 @@
+<!-- Display individual product-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Individual Product Details</title>
+</head>
+
+<body>
+    <div class="cont">
+        
+            
+            <table class="table table-bordered table-dark">
+                <caption hidden>Product Details</caption>
+                <tbody>
+                <thead class="thead-dark">
+                    <tr>
+                        <th id="prod_name">Product Type/Name</th>
+                        <th id="prod_price">Price of Product</th>
+                        <th id="prod_spec">Product Details</th>
+                        <th id="seller_name">Seller Name</th>
+                        <th id="seller_emailID">Seller's Email ID</th>
+                        <th id="seller_contactNum">Seller's Contact Number</th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <td>{{ product.Product_name}}</td>
+                    <td>{{ product.Product_price}}</td>
+                    <td>{{ product.Prod_spec}}</td>
+                    <td>{{ product.seller_name}}</td>
+                    <td>{{ product.User_email }}</td>
+                    <td>{{ product.contact_num }}</td>
+                </tr>
+
+
+        </tbody>
+        </table>
+        <div>
+        <a class="btn btn-secondary  btn-lg" href="{{ url_for('update_prod', product_id= product.id) }}">Update</a>
+            <a class="btn btn-danger btn-lg " href="{{ url_for('delete_prod', product_id= product.id) }}"
+                onclick="myFunction()">Delete</a>
+            <script>
+                function myFunction() {
+                    alert("Do you want to delete the product");
+                }
+            </script>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
